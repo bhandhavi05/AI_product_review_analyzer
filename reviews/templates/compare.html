@@ -1,0 +1,296 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-5 compare-page">
+
+    <h1 class="mb-4">
+        AI Product Comparison Dashboard
+    </h1>
+
+    <form method="GET" class="row g-3 mb-5">
+
+        <div class="col-md-5">
+
+            <label class="form-label">
+                Select Product 1
+            </label>
+
+            <select
+                name="product1"
+                class="form-select"
+                required
+            >
+                <option value="">
+                    Choose Product
+                </option>
+
+                {% for product in products %}
+                    <option
+                        value="{{ product.id }}"
+                        {% if product1 and product.id == product1.id %}
+                            selected
+                        {% endif %}
+                    >
+                        {{ product.name }}
+                    </option>
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+        <div class="col-md-5">
+
+            <label class="form-label">
+                Select Product 2
+            </label>
+
+            <select
+                name="product2"
+                class="form-select"
+                required
+            >
+                <option value="">
+                    Choose Product
+                </option>
+
+                {% for product in products %}
+                    <option
+                        value="{{ product.id }}"
+                        {% if product2 and product.id == product2.id %}
+                            selected
+                        {% endif %}
+                    >
+                        {{ product.name }}
+                    </option>
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+        <div class="col-md-2 d-flex align-items-end">
+
+            <button
+                type="submit"
+                class="btn btn-primary w-100"
+            >
+                Compare
+            </button>
+
+        </div>
+
+    </form>
+
+    {% if product1 and product2 %}
+
+    <!-- AI Recommendation Card -->
+
+    <div class="card border-success shadow mb-4">
+
+        <div class="card-header bg-success text-white">
+
+            <h3 class="mb-0">
+                🤖 AI Recommendation Engine
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            {% if winner %}
+
+                <h2 class="text-success">
+                    🏆 Recommended Product:
+                    {{ winner.name }}
+                </h2>
+
+                <hr>
+
+                <h5>
+                    AI Recommendation Score:
+                    {{ recommendation_score }}
+                </h5>
+
+                <p class="mt-3">
+                    <strong>
+                        Why was this product selected?
+                    </strong>
+                </p>
+
+                <div class="alert alert-light border">
+
+                    ✔ {{ reason }}
+
+                </div>
+
+            {% else %}
+
+                <h3>
+                    🤝 Both Products Are Equal
+                </h3>
+
+                <p>
+                    {{ reason }}
+                </p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <!-- Comparison Table -->
+
+    <table class="table table-bordered table-hover shadow">
+
+        <thead class="table-dark">
+
+            <tr>
+
+                <th>Feature</th>
+
+                <th>
+                    {{ product1.name }}
+                </th>
+
+                <th>
+                    {{ product2.name }}
+                </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr>
+
+                <td>Category</td>
+
+                <td>
+                    {{ product1.category }}
+                </td>
+
+                <td>
+                    {{ product2.category }}
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Total Reviews</td>
+
+                <td>
+                    {{ product1.review_set.count }}
+                </td>
+
+                <td>
+                    {{ product2.review_set.count }}
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Average Rating</td>
+
+                <td>
+
+                    {{ p1_data.rating }}
+
+                    {% if winner == product1 %}
+                        🏆
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    {{ p2_data.rating }}
+
+                    {% if winner == product2 %}
+                        🏆
+                    {% endif %}
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Positive Reviews</td>
+
+                <td>
+
+                    {{ p1_data.positive }}%
+
+                    {% if p1_data.positive > p2_data.positive %}
+                        ✅
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    {{ p2_data.positive }}%
+
+                    {% if p2_data.positive > p1_data.positive %}
+                        ✅
+                    {% endif %}
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Negative Reviews</td>
+
+                <td>
+
+                    {{ p1_data.negative }}%
+
+                    {% if p1_data.negative < p2_data.negative %}
+                        ✅
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    {{ p2_data.negative }}%
+
+                    {% if p2_data.negative < p1_data.negative %}
+                        ✅
+                    {% endif %}
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Neutral Reviews</td>
+
+                <td>
+                    {{ p1_data.neutral }}%
+                </td>
+
+                <td>
+                    {{ p2_data.neutral }}%
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

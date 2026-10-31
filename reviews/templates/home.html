@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="hero">
+
+<div class="container text-center">
+
+<h1>
+AI Product Review Analyzer
+</h1>
+
+<p class="mt-3">
+Analyze reviews using Sentiment Analysis,
+Fake Review Detection,
+Keyword Extraction,
+Review Summarization,
+and Product Comparison.
+</p>
+
+<div class="mt-4">
+
+<a href="/products/" class="btn btn-custom me-2">
+Explore Products
+</a>
+
+<a href="/compare/" class="btn btn-outline-primary">
+Compare Products
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<div class="container">
+
+<div class="row g-4">
+
+<div class="col-md-4">
+<div class="feature-card">
+
+<h4>Sentiment Analysis</h4>
+
+<p>
+Detect Positive, Negative and Neutral reviews instantly.
+</p>
+
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="feature-card">
+
+<h4>Fake Review Detection</h4>
+
+<p>
+Identify suspicious and spam reviews.
+</p>
+
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="feature-card">
+
+<h4>Product Comparison</h4>
+
+<p>
+Compare products based on customer feedback.
+</p>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

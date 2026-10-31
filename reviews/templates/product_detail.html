@@ -1,0 +1,343 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <h1>{{ product.name }}</h1>
+
+    <p>
+        <strong>Brand:</strong>
+        {{ product.brand }}
+    </p>
+
+    <p>
+        <strong>Category:</strong>
+        {{ product.category }}
+    </p>
+
+    <p>
+        {{ product.description }}
+    </p>
+
+    <hr>
+
+    <h2 class="mb-4">
+        📊 Review Analytics Dashboard
+    </h2>
+
+    <div class="row mb-4">
+
+        <div class="col-md-3">
+
+            <div class="card text-center border-success">
+
+                <div class="card-body">
+
+                    <h5>😊 Positive</h5>
+
+                    <h3>{{ positive_count }}</h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card text-center border-danger">
+
+                <div class="card-body">
+
+                    <h5>😞 Negative</h5>
+
+                    <h3>{{ negative_count }}</h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card text-center border-secondary">
+
+                <div class="card-body">
+
+                    <h5>😐 Neutral</h5>
+
+                    <h3>{{ neutral_count }}</h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card text-center border-warning">
+
+                <div class="card-body">
+
+                    <h5>⚠ Fake</h5>
+
+                    <h3>{{ fake_count }}</h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card shadow mb-4">
+
+        <div class="card-body">
+
+            <h4 class="mb-3">
+                Sentiment Distribution
+            </h4>
+
+            <div style="max-width: 320px; height: 320px; margin: 0 auto;">
+
+                <canvas id="sentimentChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="alert alert-info">
+
+        <strong>Total Reviews:</strong>
+        {{ total_reviews }}
+
+    </div>
+
+    <hr>
+
+    <h3>Generate AI Reviews</h3>
+
+    <form
+        method="POST"
+        action="{% url 'generate_ai_reviews' product.id %}"
+        class="row g-3 align-items-end mb-4"
+    >
+
+        {% csrf_token %}
+
+        <div class="col-md-4">
+
+            <label class="form-label">
+                Number of Reviews
+            </label>
+
+            <input
+                type="number"
+                name="review_count"
+                class="form-control"
+                min="1"
+                max="10"
+                value="3"
+            >
+
+        </div>
+
+        <div class="col-md-4">
+
+            <label class="form-label">
+                Review Rating
+            </label>
+
+            <input
+                type="number"
+                name="target_rating"
+                class="form-control"
+                min="1"
+                max="5"
+                value="4"
+            >
+
+        </div>
+
+        <div class="col-md-4">
+
+            <button
+                type="submit"
+                class="btn btn-success"
+            >
+                Generate AI Reviews
+            </button>
+
+        </div>
+
+    </form>
+
+    <h3>Add Review</h3>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button
+            type="submit"
+            class="btn btn-primary"
+        >
+            Submit Review
+        </button>
+
+    </form>
+
+    <hr>
+
+    <h3>Customer Reviews</h3>
+
+    {% for review in reviews %}
+
+    <div class="card mb-3">
+
+        <div class="card-body">
+
+            <h5>
+                {{ review.username }}
+            </h5>
+
+            <p>
+                {{ review.review_text }}
+            </p>
+
+            <p>
+                <strong>Rating:</strong>
+                {{ review.rating }}/5
+            </p>
+
+            <p>
+
+                <strong>Sentiment:</strong>
+
+                {% if review.sentiment == "Positive" %}
+
+                    <span class="badge bg-success">
+                        😊 Positive
+                    </span>
+
+                {% elif review.sentiment == "Negative" %}
+
+                    <span class="badge bg-danger">
+                        😞 Negative
+                    </span>
+
+                {% elif review.sentiment == "Neutral" %}
+
+                    <span class="badge bg-secondary">
+                        😐 Neutral
+                    </span>
+
+                {% else %}
+
+                    <span class="badge bg-dark">
+                        Unknown
+                    </span>
+
+                {% endif %}
+
+            </p>
+
+            {% if review.is_fake %}
+
+            <p>
+
+                <span class="badge bg-warning text-dark">
+                    ⚠ Fake Review Detected
+                </span>
+
+            </p>
+
+            {% else %}
+
+            <p>
+
+                <span class="badge bg-success">
+                    Genuine Review
+                </span>
+
+            </p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <p>
+        No reviews available.
+    </p>
+
+    {% endfor %}
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const ctx = document.getElementById(
+    'sentimentChart'
+);
+
+new Chart(ctx, {
+
+    type: 'pie',
+
+    data: {
+
+        labels: [
+            'Positive',
+            'Negative',
+            'Neutral',
+            'Fake'
+        ],
+
+        datasets: [{
+
+            data: [
+                {{ positive_count }},
+                {{ negative_count }},
+                {{ neutral_count }},
+                {{ fake_count }}
+            ],
+
+            backgroundColor: [
+                '#dc2626',
+                '#991b1b',
+                '#18181b',
+                '#0b0b0d'
+            ],
+
+            borderColor: '#ffffff',
+
+            borderWidth: 2
+
+        }]
+    },
+
+    options: {
+
+        maintainAspectRatio: false
+
+    }
+
+});
+
+</script>
+
+{% endblock %}

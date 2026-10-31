@@ -1,0 +1,377 @@
+:root{
+    --red:#dc2626;
+    --red-dark:#991b1b;
+    --red-soft:#fee2e2;
+    --black:#0b0b0d;
+    --black-soft:#18181b;
+    --white:#ffffff;
+    --gray:#f4f4f5;
+    --gray-dark:#52525b;
+    --border:#ef4444;
+}
+
+*{
+    letter-spacing:0;
+}
+
+body{
+    background:var(--black);
+    color:var(--white);
+    font-family:'Segoe UI',sans-serif;
+}
+
+a{
+    color:var(--red);
+}
+
+a:hover{
+    color:var(--red-dark);
+}
+
+.navbar{
+    background:var(--black)!important;
+    border-bottom:3px solid var(--red);
+    box-shadow:0 6px 20px rgba(11,11,13,.22);
+}
+
+.navbar-brand{
+    color:var(--white)!important;
+    font-weight:800;
+}
+
+.navbar .btn{
+    border-radius:8px;
+}
+
+.navbar .btn-outline-primary{
+    border-color:var(--red);
+    color:var(--white);
+}
+
+.navbar .btn-outline-primary:hover,
+.navbar .btn-primary{
+    background:var(--red);
+    border-color:var(--red);
+    color:var(--white);
+}
+
+.container h1,
+.container h2,
+.container h3,
+.container h4,
+.container h5{
+    color:var(--white);
+}
+
+.hero{
+    padding:96px 0;
+    background:linear-gradient(135deg,var(--black) 0%,var(--black-soft) 58%,var(--red-dark) 100%);
+    color:var(--white);
+    border-bottom:5px solid var(--red);
+}
+
+.hero h1,
+.hero h2,
+.hero h3{
+    color:var(--white);
+    font-size:3rem;
+    font-weight:800;
+}
+
+.hero p{
+    color:#f5f5f5;
+    font-size:1.2rem;
+}
+
+.hero + .container{
+    background:var(--black);
+    padding-top:48px;
+    padding-bottom:80px;
+}
+
+body > .container{
+    background:var(--black);
+}
+
+.compare-page{
+    background:var(--black)!important;
+    color:var(--white);
+    min-height:calc(100vh - 160px);
+}
+
+.compare-page form{
+    background:var(--black-soft);
+    border:1px solid var(--red);
+    border-radius:8px;
+    padding:24px;
+}
+
+.compare-page label,
+.compare-page h1,
+.compare-page h2,
+.compare-page h3,
+.compare-page h4,
+.compare-page h5,
+.compare-page p,
+.compare-page strong,
+.compare-page td,
+.compare-page th{
+    color:var(--white)!important;
+}
+
+.compare-page .card{
+    background:var(--black-soft)!important;
+    border:1px solid var(--red)!important;
+}
+
+.compare-page .card-body{
+    background:var(--black-soft)!important;
+}
+
+.compare-page .alert{
+    background:var(--black)!important;
+    border-color:var(--red)!important;
+    color:var(--white)!important;
+}
+
+.compare-page table{
+    background:var(--black-soft)!important;
+    color:var(--white)!important;
+}
+
+.compare-page tbody,
+.compare-page tbody tr,
+.compare-page tbody td{
+    background:var(--black-soft)!important;
+    color:var(--white)!important;
+}
+
+.btn,
+.form-control,
+.form-select,
+.card,
+.alert{
+    border-radius:8px;
+}
+
+.btn-primary,
+.btn-success,
+.btn-custom{
+    background:var(--red)!important;
+    border-color:var(--red)!important;
+    color:var(--white)!important;
+}
+
+.btn-primary:hover,
+.btn-success:hover,
+.btn-custom:hover{
+    background:var(--red-dark)!important;
+    border-color:var(--red-dark)!important;
+    color:var(--white)!important;
+}
+
+.btn-outline-primary,
+.btn-outline-success{
+    border-color:var(--red)!important;
+    color:var(--red)!important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-success:hover{
+    background:var(--red)!important;
+    border-color:var(--red)!important;
+    color:var(--white)!important;
+}
+
+.btn-custom{
+    padding:12px 24px;
+    border:none;
+    transition:.25s;
+}
+
+.btn-custom:hover{
+    transform:translateY(-2px);
+}
+
+.form-control,
+.form-select{
+    background:var(--black-soft);
+    border:1px solid var(--red);
+    color:var(--white);
+}
+
+.form-control::placeholder{
+    color:#a1a1aa;
+}
+
+.form-control:focus,
+.form-select:focus{
+    border-color:var(--red);
+    box-shadow:0 0 0 .2rem rgba(220,38,38,.2);
+}
+
+.input-group .btn{
+    border-color:var(--red)!important;
+}
+
+.card,
+.feature-card,
+.stats-box{
+    background:var(--black-soft);
+    border:1px solid var(--red)!important;
+    box-shadow:0 8px 24px rgba(11,11,13,.1);
+    color:var(--white);
+}
+
+.feature-card,
+.stats-box{
+    border-radius:8px;
+    padding:25px;
+}
+
+.feature-card h4,
+.feature-card p{
+    color:var(--white);
+}
+
+.feature-card{
+    transition:.25s;
+}
+
+.feature-card:hover{
+    transform:translateY(-5px);
+    border-color:var(--red)!important;
+}
+
+.card-title,
+.fw-bold{
+    color:var(--white);
+}
+
+.card p,
+.card label,
+.card td,
+.card th,
+.card strong,
+.card .card-body{
+    color:var(--white);
+}
+
+.text-muted{
+    color:#d4d4d8!important;
+}
+
+.text-success,
+.text-primary{
+    color:var(--red)!important;
+}
+
+.border-success,
+.border-primary,
+.border-danger,
+.border-secondary,
+.border-warning{
+    border-color:#fecaca!important;
+}
+
+.bg-primary,
+.bg-success,
+.bg-danger,
+.bg-secondary,
+.bg-warning,
+.bg-dark{
+    background:var(--red)!important;
+    color:var(--white)!important;
+}
+
+.badge{
+    border-radius:8px;
+    padding:.45rem .65rem;
+}
+
+.badge.bg-warning,
+.text-dark{
+    color:var(--white)!important;
+}
+
+.card-header{
+    background:var(--black)!important;
+    border-bottom:3px solid var(--red);
+    color:var(--white)!important;
+}
+
+.card-header h1,
+.card-header h2,
+.card-header h3,
+.card-header h4,
+.card-header h5{
+    color:var(--white)!important;
+}
+
+.alert{
+    border:1px solid #fecaca;
+}
+
+.alert-info,
+.alert-light,
+.alert-warning,
+.alert-success{
+    background:var(--red-soft)!important;
+    border-color:#fecaca!important;
+    color:var(--red-dark)!important;
+}
+
+.alert-danger,
+.alert-error{
+    background:var(--black)!important;
+    border-color:var(--red)!important;
+    color:var(--white)!important;
+}
+
+.table{
+    background:var(--black-soft);
+    color:var(--white);
+    border-color:var(--red);
+}
+
+.table-dark,
+.table thead,
+.table thead th{
+    background:var(--black)!important;
+    color:var(--white)!important;
+    border-color:var(--red)!important;
+}
+
+.table-bordered>:not(caption)>*{
+    border-color:var(--red);
+}
+
+.table tbody,
+.table tbody tr,
+.table tbody td{
+    background:var(--black-soft)!important;
+    color:var(--white)!important;
+    border-color:var(--red)!important;
+}
+
+.table-hover tbody tr:hover{
+    background:var(--red-dark)!important;
+}
+
+hr{
+    border-top:2px solid #fecaca;
+    opacity:1;
+}
+
+canvas{
+    max-width:100%;
+}
+
+.footer{
+    background:var(--black);
+    border-top:4px solid var(--red);
+    color:var(--white);
+    margin-top:80px;
+    padding:22px;
+    text-align:center;
+}

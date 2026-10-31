@@ -1,0 +1,26 @@
+
+# Virtual environment
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Django database and logs
+db.sqlite3
+*.log
+
+# API keys and secrets
+.env
+reviews/local_config.py
+
+# IDE settings
+.vscode/
+
+# Ignore unrelated file
+TICTACTOE SAMPLE SOLN.txt
+
+# OS files
+.DS_Store
+Thumbs.db

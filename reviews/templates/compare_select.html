@@ -1,0 +1,31 @@
+<h2>Compare Products</h2>
+
+<form method="GET" action="{% url 'compare' %}">
+
+    <label>Product 1</label>
+    <select name="p1" required>
+        {% for product in products %}
+            <option value="{{ product.id }}">
+                {{ product.name }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <br><br>
+
+    <label>Product 2</label>
+    <select name="p2" required>
+        {% for product in products %}
+            <option value="{{ product.id }}">
+                {{ product.name }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <br><br>
+
+    <button type="submit">
+        Compare Products
+    </button>
+
+</form>
