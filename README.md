@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # AI Product Review Analyzer
 
 A Django web application for analyzing product reviews, detecting suspicious reviews, generating reviews automatically, and comparing products based on customer feedback.
@@ -206,3 +207,6 @@ System check identified no issues.
 - Bootstrap and Chart.js are loaded through CDN links.
 - Gemini API errors such as `503 UNAVAILABLE` are handled by falling back to local review generation.
 
+=======
+# AI_product_review_analyzer
+>>>>>>> af22593e56c9240f2eba693cf4b252a39d22bb5c
